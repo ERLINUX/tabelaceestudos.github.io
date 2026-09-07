@@ -3,10 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Site de estudos para o ENEM e PAS-UEM">
+
+    <meta name="description"
+        content="Site de estudos para o ENEM e PAS-UEM">
+
     <title>Foco nos Estudos | ENEM e PAS-UEM</title>
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --azul: #183b56;
+            --azul-claro: #247ba0;
+            --verde: #2a9d8f;
+            --amarelo: #f4a261;
+            --vermelho: #e76f51;
+            --fundo: #f4f7fb;
+            --texto: #263238;
+            --branco: #ffffff;
+            --sombra: 0 5px 18px rgba(0, 0, 0, 0.10);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--fundo);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(
+                135deg,
+                var(--azul),
+                var(--azul-claro)
+            );
+
+            color: var(--branco);
+            padding: 22px 6%;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: var(--sombra);
+        }
+
+        .cabecalho {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: var(--amarelo);
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: var(--amarelo);
+        }
+
+        .hero {
+            min-height: 430px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 70px 8%;
+            color: var(--branco);
+
+            background:
+                linear-gradient(
+                    rgba(24, 59, 86, .9),
+                    rgba(36, 123, 160, .85)
+                ),
+                url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80")
+                center / cover;
+        }
+
+        .hero-conteudo {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 28px;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 13px 25px;
+            border-radius: 8px;
+            background: var(--amarelo);
+            color: #222;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .botao:hover {
+            background: #ffd08a;
+        }
+
+        .container {
+            width: min(1200px, 90%);
+            margin: auto;
+        }
+
+        section {
+            padding: 65px 0;
+        }
+
+        .titulo-secao {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .titulo-secao h2 {
+            color: var(--azul);
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .titulo-secao p {
+            color: #60717c;
+        }
+
+        .provas,
+        .materias,
+        .dicas {
+            display: grid;
+            gap: 25px;
+        }
+
+        .provas {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .materias {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .prova,
+        .materia,
+        .redacao,
+        .dia {
+            background: var(--branco);
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: var(--sombra);
+        }
+
+        .prova {
+            border-top: 5px solid var(--azul-claro);
+        }
+
+        .prova h3,
+        .materia h3 {
+            color: var(--azul);
+            margin-bottom: 14px;
+        }
+
+        .materia h3 {
+            border-bottom: 2px solid var(--amarelo);
+            padding-bottom: 10px;
+        }
+
+        .materia h4 {
+            color: var(--verde);
+            margin-top: 16px;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        .redacao {
+            border-left: 6px solid var(--verde);
+            background: linear-gradient(
+                135deg,
+                #e7f5f2,
+                var(--branco)
+            );
+        }
+
+        .redacao h3 {
+            color: var(--azul);
+            margin-bottom: 10px;
+        }
+
+        .cronograma {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .dia {
+            text-align: center;
+        }
+
+        .dia h3 {
+            color: var(--azul-claro);
+            margin-bottom: 10px;
+        }
+
+        .dicas {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .dica {
+            background: var(--azul);
+            color: var(--branco);
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .dica h3 {
+            color: var(--amarelo);
+            margin-bottom: 8px;
+        }
+
+        /* POMODORO */
+
+        .pomodoro {
+            max-width: 570px;
+            margin: auto;
+            padding: 35px 25px;
+            text-align: center;
+            background: var(--branco);
+            border-radius: 16px;
+            box-shadow: var(--sombra);
+            border-top: 6px solid var(--verde);
+        }
+
+        .pomodoro-menu {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .modo,
+        .controles button {
+            border: none;
+            padding: 11px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .modo {
+            background: #e8eef2;
+            color: var(--azul);
+        }
+
+        .modo:hover,
+        .modo.ativo {
+            background: var(--azul-claro);
+            color: var(--branco);
+        }
+
+        #tempo {
+            color: var(--azul);
+            font-size: clamp(4rem, 12vw, 7rem);
+            font-weight: bold;
+            line-height: 1;
+            margin: 25px 0 15px;
+        }
+
+        #status {
+            color: #60717c;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .controles {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .controles button {
+            background: var(--verde);
+            color: var(--branco);
+        }
+
+        .controles button:hover {
+            transform: translateY(-2px);
+            opacity: .9;
+        }
+
+        #pausar {
+            background: var(--amarelo);
+            color: #222;
+        }
+
+        #reiniciar {
+            background: var(--vermelho);
+        }
+
+        .ciclos {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            color: #60717c;
+        }
+
+        footer {
+            background: var(--azul);
+            color: var(--branco);
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 850px) {
+            .cabecalho {
+                flex-direction: column;
+            }
+
+            .provas,
+            .materias {
+                grid-template-columns: 1fr;
+            }
+
+            .cronograma {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dicas {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            nav ul {
+                justify-content: center;
+                gap: 10px;
+                font-size: .9rem;
+            }
+
+            .cronograma {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 55px 5%;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
     <header>
@@ -34,11 +418,15 @@
         <section class="hero" id="inicio">
             <div class="hero-conteudo">
                 <h1>Prepare-se para o ENEM e PAS-UEM</h1>
+
                 <p>
                     Organize seus estudos, revise os principais conteúdos
                     e desenvolva estratégias para conquistar sua aprovação.
                 </p>
-                <a class="botao" href="#materias">Ver conteúdos</a>
+
+                <a class="botao" href="#materias">
+                    Ver conteúdos
+                </a>
             </div>
         </section>
 
@@ -46,13 +434,20 @@
             <div class="container">
                 <div class="titulo-secao">
                     <h2>Conheça as provas</h2>
-                    <p>Entenda as principais áreas avaliadas.</p>
+                    <p>
+                        Entenda as principais áreas avaliadas.
+                    </p>
                 </div>
 
                 <div class="provas">
                     <article class="prova">
                         <h3>ENEM</h3>
-                        <p>O ENEM é organizado por áreas do conhecimento e também possui uma prova de redação.</p>
+
+                        <p>
+                            O ENEM é organizado por áreas do conhecimento
+                            e também possui uma prova de redação.
+                        </p>
+
                         <ul>
                             <li>Linguagens e suas Tecnologias</li>
                             <li>Ciências Humanas e suas Tecnologias</li>
@@ -64,7 +459,12 @@
 
                     <article class="prova">
                         <h3>PAS-UEM</h3>
-                        <p>O PAS-UEM é um processo de avaliação seriada realizado durante o Ensino Médio.</p>
+
+                        <p>
+                            O PAS-UEM é um processo de avaliação seriada
+                            realizado durante o Ensino Médio.
+                        </p>
+
                         <ul>
                             <li>Conteúdos por etapa escolar</li>
                             <li>Conhecimentos gerais</li>
@@ -81,14 +481,18 @@
             <div class="container">
                 <div class="titulo-secao">
                     <h2>Conteúdos principais</h2>
-                    <p>Utilize esta lista para montar seu plano de estudos.</p>
+                    <p>
+                        Utilize esta lista para montar seu plano de estudos.
+                    </p>
                 </div>
 
                 <div class="materias">
 
                     <article class="materia">
                         <h3>Português e Literatura</h3>
+
                         <h4>Gramática</h4>
+
                         <ul>
                             <li>Classes gramaticais</li>
                             <li>Termos da oração</li>
@@ -98,7 +502,9 @@
                             <li>Crase e pontuação</li>
                             <li>Colocação pronominal</li>
                         </ul>
+
                         <h4>Literatura</h4>
+
                         <ul>
                             <li>Gêneros literários</li>
                             <li>Escolas literárias</li>
@@ -111,6 +517,7 @@
 
                     <article class="materia">
                         <h3>Matemática</h3>
+
                         <ul>
                             <li>Razão, proporção e regra de três</li>
                             <li>Porcentagem e juros</li>
@@ -128,6 +535,7 @@
 
                     <article class="materia">
                         <h3>História</h3>
+
                         <ul>
                             <li>Antiguidade Oriental e Clássica</li>
                             <li>Idade Média e feudalismo</li>
@@ -145,6 +553,7 @@
 
                     <article class="materia">
                         <h3>Geografia</h3>
+
                         <ul>
                             <li>Cartografia, mapas e escalas</li>
                             <li>Relevo e estrutura geológica</li>
@@ -162,6 +571,7 @@
 
                     <article class="materia">
                         <h3>Biologia</h3>
+
                         <ul>
                             <li>Citologia e organelas</li>
                             <li>Metabolismo celular</li>
@@ -179,6 +589,7 @@
 
                     <article class="materia">
                         <h3>Química</h3>
+
                         <ul>
                             <li>Estrutura atômica</li>
                             <li>Tabela periódica</li>
@@ -197,6 +608,7 @@
 
                     <article class="materia">
                         <h3>Física</h3>
+
                         <ul>
                             <li>Cinemática</li>
                             <li>Leis de Newton</li>
@@ -215,7 +627,9 @@
 
                     <article class="materia">
                         <h3>Filosofia e Sociologia</h3>
+
                         <h4>Filosofia</h4>
+
                         <ul>
                             <li>Filosofia Antiga</li>
                             <li>Ética e política</li>
@@ -223,7 +637,9 @@
                             <li>Iluminismo</li>
                             <li>Filosofia contemporânea</li>
                         </ul>
+
                         <h4>Sociologia</h4>
+
                         <ul>
                             <li>Cultura e identidade</li>
                             <li>Trabalho e desigualdade</li>
@@ -235,6 +651,7 @@
 
                     <article class="materia">
                         <h3>Língua Estrangeira</h3>
+
                         <ul>
                             <li>Interpretação de textos</li>
                             <li>Ideia principal e informações específicas</li>
@@ -255,18 +672,33 @@
             <div class="container">
                 <div class="titulo-secao">
                     <h2>Redação do ENEM</h2>
-                    <p>Organize seus argumentos e apresente uma intervenção.</p>
+                    <p>
+                        Organize seus argumentos e apresente uma intervenção.
+                    </p>
                 </div>
 
                 <div class="redacao">
                     <h3>Estrutura recomendada</h3>
+
                     <ul>
-                        <li><strong>Introdução:</strong> apresente o tema e sua tese.</li>
-                        <li><strong>Desenvolvimento:</strong> explique os argumentos e utilize repertório.</li>
-                        <li><strong>Conclusão:</strong> apresente uma proposta de intervenção.</li>
+                        <li>
+                            <strong>Introdução:</strong>
+                            apresente o tema e sua tese.
+                        </li>
+
+                        <li>
+                            <strong>Desenvolvimento:</strong>
+                            explique os argumentos e utilize repertório.
+                        </li>
+
+                        <li>
+                            <strong>Conclusão:</strong>
+                            apresente uma proposta de intervenção.
+                        </li>
                     </ul>
 
                     <h3>Competências avaliadas</h3>
+
                     <ul>
                         <li>Domínio da norma-padrão.</li>
                         <li>Compreensão da proposta.</li>
@@ -282,7 +714,9 @@
             <div class="container">
                 <div class="titulo-secao">
                     <h2>Cronograma semanal</h2>
-                    <p>Adapte o planejamento à sua rotina.</p>
+                    <p>
+                        Adapte o planejamento à sua rotina.
+                    </p>
                 </div>
 
                 <div class="cronograma">
@@ -290,26 +724,32 @@
                         <h3>Segunda</h3>
                         <p>Matemática<br>Biologia<br>Exercícios</p>
                     </div>
+
                     <div class="dia">
                         <h3>Terça</h3>
                         <p>Português<br>História<br>Redação</p>
                     </div>
+
                     <div class="dia">
                         <h3>Quarta</h3>
                         <p>Física<br>Geografia<br>Revisão</p>
                     </div>
+
                     <div class="dia">
                         <h3>Quinta</h3>
                         <p>Química<br>Literatura<br>Exercícios</p>
                     </div>
+
                     <div class="dia">
                         <h3>Sexta</h3>
                         <p>Filosofia<br>Sociologia<br>Inglês</p>
                     </div>
+
                     <div class="dia">
                         <h3>Sábado</h3>
                         <p>Simulado<br>Correção<br>Revisão dos erros</p>
                     </div>
+
                     <div class="dia">
                         <h3>Domingo</h3>
                         <p>Descanso<br>Leitura<br>Revisão leve</p>
@@ -322,17 +762,28 @@
             <div class="container">
                 <div class="titulo-secao">
                     <h2>Pomodoro de Estudos</h2>
-                    <p>Estude com foco e faça pausas para manter a produtividade.</p>
+                    <p>
+                        Estude com foco e faça pausas para manter a produtividade.
+                    </p>
                 </div>
 
                 <div class="pomodoro">
                     <div class="pomodoro-menu">
-                        <button class="modo ativo" data-tempo="25">Estudo</button>
-                        <button class="modo" data-tempo="5">Pausa curta</button>
-                        <button class="modo" data-tempo="15">Pausa longa</button>
+                        <button class="modo ativo" data-tempo="25">
+                            Estudo
+                        </button>
+
+                        <button class="modo" data-tempo="5">
+                            Pausa curta
+                        </button>
+
+                        <button class="modo" data-tempo="15">
+                            Pausa longa
+                        </button>
                     </div>
 
                     <div id="tempo">25:00</div>
+
                     <p id="status">Hora de estudar!</p>
 
                     <div class="controles">
@@ -342,7 +793,10 @@
                     </div>
 
                     <div class="ciclos">
-                        <p>Ciclos concluídos: <span id="contador-ciclos">0</span></p>
+                        <p>
+                            Ciclos concluídos:
+                            <span id="contador-ciclos">0</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -357,17 +811,29 @@
                 <div class="dicas">
                     <article class="dica">
                         <h3>Resolva questões</h3>
-                        <p>Faça exercícios de provas anteriores e analise seus erros.</p>
+
+                        <p>
+                            Faça exercícios de provas anteriores e analise
+                            seus erros.
+                        </p>
                     </article>
 
                     <article class="dica">
                         <h3>Faça revisões</h3>
-                        <p>Revise o conteúdo depois de um dia, uma semana e um mês.</p>
+
+                        <p>
+                            Revise o conteúdo depois de um dia, uma semana
+                            e um mês.
+                        </p>
                     </article>
 
                     <article class="dica">
                         <h3>Treine redação</h3>
-                        <p>Escreva frequentemente e pratique temas diferentes.</p>
+
+                        <p>
+                            Escreva frequentemente e pratique temas
+                            diferentes.
+                        </p>
                     </article>
                 </div>
             </div>
@@ -376,10 +842,154 @@
     </main>
 
     <footer>
-        <p>© FocoEstudos — Projeto para ENEM e PAS-UEM</p>
-        <p>Organização, disciplina e constância fazem a diferença.</p>
+        <p>
+            © 2026 FocoEstudos — Projeto para ENEM e PAS-UEM
+        </p>
+
+        <p>
+            Organização, disciplina e constância fazem a diferença.
+        </p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        let tempoAtual = 25 * 60;
+        let intervalo = null;
+        let executando = false;
+        let ciclosConcluidos = 0;
+        let modoAtual = "Estudo";
+
+        const displayTempo = document.getElementById("tempo");
+        const statusTexto = document.getElementById("status");
+        const contadorCiclos =
+            document.getElementById("contador-ciclos");
+
+        const botaoIniciar =
+            document.getElementById("iniciar");
+
+        const botaoPausar =
+            document.getElementById("pausar");
+
+        const botaoReiniciar =
+            document.getElementById("reiniciar");
+
+        function atualizarDisplay() {
+            const minutos = Math.floor(tempoAtual / 60);
+            const segundos = tempoAtual % 60;
+
+            displayTempo.textContent =
+                `${String(minutos).padStart(2, "0")}:${String(segundos).padStart(2, "0")}`;
+        }
+
+        function iniciarPomodoro() {
+            if (executando) return;
+
+            executando = true;
+            statusTexto.textContent =
+                `${modoAtual} em andamento...`;
+
+            intervalo = setInterval(() => {
+                if (tempoAtual > 0) {
+                    tempoAtual--;
+                    atualizarDisplay();
+                } else {
+                    clearInterval(intervalo);
+                    executando = false;
+
+                    if (modoAtual === "Estudo") {
+                        ciclosConcluidos++;
+
+                        contadorCiclos.textContent =
+                            ciclosConcluidos;
+
+                        statusTexto.textContent =
+                            "Ciclo concluído! Faça uma pausa.";
+                    } else {
+                        statusTexto.textContent =
+                            "Pausa concluída! Prepare-se para estudar.";
+                    }
+
+                    tocarAlerta();
+                }
+            }, 1000);
+        }
+
+        function pausarPomodoro() {
+            clearInterval(intervalo);
+            executando = false;
+            statusTexto.textContent = "Pomodoro pausado.";
+        }
+
+        function reiniciarPomodoro() {
+            clearInterval(intervalo);
+            executando = false;
+
+            const modoSelecionado =
+                document.querySelector(".modo.ativo");
+
+            tempoAtual =
+                Number(modoSelecionado.dataset.tempo) * 60;
+
+            atualizarDisplay();
+
+            statusTexto.textContent =
+                modoAtual === "Estudo"
+                    ? "Hora de estudar!"
+                    : "Momento de descansar.";
+        }
+
+        function tocarAlerta() {
+            const alerta = new Audio(
+                "https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"
+            );
+
+            alerta.play().catch(() => {
+                console.log("Alerta sonoro bloqueado.");
+            });
+        }
+
+        document.querySelectorAll(".modo").forEach(botao => {
+            botao.addEventListener("click", () => {
+                document.querySelectorAll(".modo").forEach(item => {
+                    item.classList.remove("ativo");
+                });
+
+                botao.classList.add("ativo");
+
+                modoAtual = botao.textContent.trim();
+
+                tempoAtual =
+                    Number(botao.dataset.tempo) * 60;
+
+                clearInterval(intervalo);
+                executando = false;
+
+                atualizarDisplay();
+
+                statusTexto.textContent =
+                    modoAtual === "Estudo"
+                        ? "Hora de estudar!"
+                        : "Momento de descansar.";
+            });
+        });
+
+        botaoIniciar.addEventListener(
+            "click",
+            iniciarPomodoro
+        );
+
+        botaoPausar.addEventListener(
+            "click",
+            pausarPomodoro
+        );
+
+        botaoReiniciar.addEventListener(
+            "click",
+            reiniciarPomodoro
+        );
+
+        atualizarDisplay();
+    </script>
+
 </body>
 </html>
+
